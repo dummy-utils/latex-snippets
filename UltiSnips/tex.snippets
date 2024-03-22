@@ -1,0 +1,151 @@
+# UltiSnips snippets for LaTeX
+#
+# Credits: Gilles Castel
+# Author: Leonardo Callegari
+
+# <<< GLOBAL PYTHON UTILS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+global !p
+
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def env(name):
+	[x, y] = vim.eval("vimtex#env#is_inside('" + name + "')")
+	return x != '0' and y != '0'
+
+def create_row_tabstops(count, start=0):
+	return ' & '.join([f"${i + 1}" for i in range(start, start + count)])
+
+def create_matrix_tabstops(rows, cols):
+	res = ""
+	eol = "\\\\\\\\\n"
+	for i in range(rows):
+		res += f"{create_row_tabstops(cols, i * cols)} {eol}"
+	return res.rstrip()
+
+def expand_matrix(snip, rows, cols):
+	snip.expand_anon(create_matrix_tabstops(rows, cols))
+
+endglobal
+
+# >>> GLOBAL PYTHON UTILS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# === SNIPPETS ============================================================
+
+# <<< DIVIDERS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+snippet chap "chapter" "not math()" eb
+\chapter{${1:${VISUAL}}}
+endsnippet
+
+snippet sec "section" "not math()" eb
+\section{${1:${VISUAL}}}
+endsnippet
+
+snippet sub "subsection" "not math()" eb
+\subsection{${1:${VISUAL}}}
+endsnippet
+
+snippet ssub "subsubsection" "not math()" eb
+\subsubsection{${1:${VISUAL}}}
+endsnippet
+
+snippet par "paragraph" "not math()" eb
+\paragraph{${1:${VISUAL}}}
+endsnippet
+
+# >>> DIVIDERS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# <<< MISCELLANEOUS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+snippet fig "figure" "not math()" eb
+\begin{figure}
+	\centering
+	\includegraphics[scale=${1:1}]{$2}
+	\caption{$3}
+	\label{fig:${4:$2}}
+\end{figure}
+endsnippet
+
+snippet beg "begin / end" b
+\begin{${1:${VISUAL}}}
+	$0
+\end{$1}
+endsnippet
+
+snippet "(?<!\\)\b(\w*)cmd" "command" r
+`!p snip.rv = f"\\{match.group(1)}"`
+endsnippet
+
+snippet pac "package" "not env('document')" eb
+\usepackage$2{$1}
+endsnippet
+
+snippet ref "reference" "not math()" ew
+\ref{${1:type}:${2:name}}
+endsnippet
+
+snippet cit "cite" "not math()" ew
+\cite{${1:${VISUAL}}}
+endsnippet
+
+snippet la "label" w
+\label{${1:type}:${2:name}}
+endsnippet
+
+snippet it "italic" "not math()" ew
+\textit{${1:${VISUAL}}}
+endsnippet
+
+snippet bb "bold" "not math()" ew
+\textbf{${1:${VISUAL}}}
+endsnippet
+
+snippet tt "typewriter" "not math()" ew
+\texttt{${1:${VISUAL}}}
+endsnippet
+
+snippet em "emphasize" "not math()" ew
+\emph{${1:${VISUAL}}}
+endsnippet
+
+snippet tx "text" "math()" ew
+\text{${1:${VISUAL}}}
+endsnippet
+
+# >>> MISCELLANEOUS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# <<< ENVIRONMENTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+snippet item "itemize" "not math()" eb
+\begin{itemize}
+	\item $0
+\end{itemize}
+endsnippet
+
+snippet enum "enumerate" "not math()" eb
+\begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet itm "item" "env('itemize') or env('enumerate')" Aeb
+`!p vim.eval('feedkeys("\<c-f>")')` \item $0
+endsnippet
+
+# >>> ENVIRONMENTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# <<< MATH <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+snippet mk "inline math" "not math()" Aew
+$$1$
+endsnippet
+
+snippet dm "display math" "not math()" Aeb
+\[
+	$0
+\]
+endsnippet
+
+# >>> MATH >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
