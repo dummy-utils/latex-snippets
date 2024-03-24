@@ -148,4 +148,21 @@ snippet dm "display math" "not math()" Aeb
 \]
 endsnippet
 
+snippet "([A-Z])cal" "mathcal" "math()" er
+\mathcal{`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet "([a-zA-Z])(bar|hat)" "bar/hat" "math()" er
+`!p snip.rv = f"\\{match.group(2)}{{{match.group(1)}}}"`
+endsnippet
+
+snippet "([a-zA-Z])til(de)?" "tilde" "math()" er
+\tilde{`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet "(?<!\\)\bell" "ell" "math()" Aer
+\ell
+endsnippet
+
 # >>> MATH >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
