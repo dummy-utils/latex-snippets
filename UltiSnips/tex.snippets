@@ -148,6 +148,124 @@ snippet dm "display math" "not math()" Aeb
 \]
 endsnippet
 
+snippet eqn "equation" "not math()" eb
+\begin{equation}
+	$0
+\end{equation}
+endsnippet
+
+snippet sp "math split" "math()" eb
+\begin{split}
+	$0
+\end{split}
+endsnippet
+
+snippet cases "math cases" "math()" eb
+\begin{cases}
+	$0
+\end{cases}
+endsnippet
+
+snippet case "case" "env('cases')" eb
+$1 & $2 \\\\
+endsnippet
+
+snippet "gat([*]?)" "gather" "not math()" ebr
+\begin{gather`!p snip.rv = match.group(1)`}
+	$0
+\end{gather`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet "al([*]?)" "align" "not math()" ebr
+\begin{align`!p snip.rv = match.group(1)`}
+	$0
+\end{align`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet <= "less than or equal" "math()" Aew
+\le
+endsnippet
+
+snippet >= "greater than or equal" "math()" Aew
+\ge
+endsnippet
+
+snippet != "not equal" "math()" Aew
+\ne
+endsnippet
+
+snippet === "equiv" "math()" Aew
+\equiv
+endsnippet
+
+snippet "(?<!\\)\bpm" "plus minus" "math()" Aer
+\pm
+endsnippet
+
+snippet "(?<!\\)\bmp" "minus plus" "math()" Aer
+\mp
+endsnippet
+
+snippet >> "much greater than" "math()" ew
+\gg
+endsnippet
+
+snippet << "much less than" "math()" ew
+\ll
+endsnippet
+
+snippet => "implies" "math()" ew
+\implies
+endsnippet
+
+snippet =< "implied by" "math()" ew
+\impliedby
+endsnippet
+
+snippet "(?<!\\)\biff" "iff" "math()" Aer
+\iff
+endsnippet
+
+snippet AA "forall" "math()" Aew
+\forall
+endsnippet
+
+snippet "(?<!!)\bEE" "exists" "math()" Aer
+\exists
+endsnippet
+
+snippet !EE "not exists" "math()" Aew
+\nexists
+endsnippet
+
+snippet -> "to" "math()" Aew
+\to
+endsnippet
+
+snippet @@ "infty" "math()" Aew
+\infty
+endsnippet
+
+snippet uu "cup" "math()" Aew
+\cup
+endsnippet
+
+snippet vv "cap" "math()" Aew
+\cap
+endsnippet
+
+snippet UU "bigcup" "math()" Aew
+\bigcup_{$1}^{$2}
+endsnippet
+
+snippet VV "bigcap" "math()" Aew
+\bigcap{$1}^{$2}
+endsnippet
+
+snippet "([a-zA-Z])vec" "vector symbol" "math()" er
+\vec{`!p snip.rv = match.group(1)`}
+endsnippet
+
 snippet "([A-Z])cal" "mathcal" "math()" er
 \mathcal{`!p snip.rv = match.group(1)`}
 endsnippet
@@ -162,6 +280,33 @@ endsnippet
 
 snippet "(?<!\\)\bell" "ell" "math()" Aer
 \ell
+endsnippet
+
+snippet qq "quad" "math()" ew
+\quad
+endsnippet
+
+priority 10
+snippet qqq "qquad" "math()" ew
+\qquad
+endsnippet
+priority 0
+
+snippet // "simple frac" "math()" Aew
+\frac{$1}{$2}
+endsnippet
+
+snippet sum "sum" "math()" Aew
+\sum_{$1}^{$2}
+endsnippet
+
+snippet prod "prod" "math()" Aew
+\prod_{$1}^{$2}
+endsnippet
+
+# requires \newcommand{\dx}[1][x]{\,\text{d}#1}
+snippet int "int" "math()" Aew
+\int_{$1}^{$2} $0 \dx[${3:x}]
 endsnippet
 
 # >>> MATH >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
