@@ -292,8 +292,77 @@ snippet qqq "qquad" "math()" ew
 endsnippet
 priority 0
 
+
+snippet "(?<!(\\|!))\bin" "in" "math()" Aer
+\in
+endsnippet
+
+snippet !in "not in" "math()" Ae
+\notin
+endsnippet
+
+snippet "(?<!!)cc" "subset" "math()" ewr
+\subset
+endsnippet
+
+snippet "(?<!!)cc=" "subseteq" "math()" ewr
+\subseteq
+endsnippet
+
+snippet !cc "not subset" "math()" ew
+\not\subset
+endsnippet
+
+snippet !cc= "not subseteq" "math()" ew
+\not\subseteq
+endsnippet
+
+snippet "(?<!!)CC" "supset" "math()" ewr
+\supset
+endsnippet
+
+snippet "(?<!!)CC=" "supseteq" "math()" ewr
+\supseteq
+endsnippet
+
+snippet !CC "not supset" "math()" ew
+\not\supset
+endsnippet
+
+snippet !CC= "not supseteq" "math()" ew
+\not\supseteq
+endsnippet
+
+snippet s- "set minus" "math()" ew
+\smallsetminus
+endsnippet
+
+snippet 0set "empty set" "math()" Aew
+\varnothing
+endsnippet
+
+snippet set "set" "math()" ew
+\\{ $1 \\}
+endsnippet
+
+snippet ^^^ "ceil" "math()" Aew
+\lceil $1 \rceil
+endsnippet
+
+snippet ___ "floor" "math()" Aew
+\lfloor $1 \rfloor
+endsnippet
+
+snippet "\b([ldcv])\." "math dots" "math()" er
+`!p snip.rv = f"\\{match.group(1)}dots"`
+endsnippet
+
 snippet // "simple frac" "math()" Aew
 \frac{$1}{$2}
+endsnippet
+
+snippet def= "equals by def" "math()" ew
+\overset{\text{\tiny ${1:def}}}{${2:=}}
 endsnippet
 
 snippet sum "sum" "math()" Aew
@@ -307,6 +376,118 @@ endsnippet
 # requires \newcommand{\dx}[1][x]{\,\text{d}#1}
 snippet int "int" "math()" Aew
 \int_{$1}^{$2} $0 \dx[${3:x}]
+endsnippet
+
+snippet lim "lim" "math()" Aew
+\lim_{$1}
+endsnippet
+
+snippet "(?<!\\)\b(min|max|inf|sup)" "math ops" "math()" Aer
+`!p snip.rv = f"\\{match.group(1)}"`
+endsnippet
+
+snippet "\b([a-zA-Z])(_|\^)" "subscript & superscript" "math()" Aer
+`!p snip.rv = f"{match.group(1) + match.group(2)}{{"`$1`!p snip.rv = f"}}"`
+endsnippet
+
+snippet rd "surrounded exponent" "math()" ei
+^{($1)}
+endsnippet
+
+snippet aa "alpha" "math()" ew
+\alpha
+endsnippet
+
+snippet bb "beta" "math()" ew
+\beta
+endsnippet
+
+snippet gg "gamma" "math()" ew
+\gamma
+endsnippet
+
+snippet GG "Gamma" "math()" ew
+\Gamma
+endsnippet
+
+snippet dd "delta" "math()" ew
+\delta
+endsnippet
+
+snippet DD "Delta" "math()" ew
+\Delta
+endsnippet
+
+snippet ee "epsilon" "math()" ew
+\epsilon
+endsnippet
+
+snippet varee "varepsilon" "math()" ew
+\varepsilon
+endsnippet
+
+snippet zz "zeta" "math()" ew
+\zeta
+endsnippet
+
+snippet hh "eta" "math()" ew
+\eta
+endsnippet
+
+snippet th "theta" "math()" ew
+\theta
+endsnippet
+
+snippet TT "Theta" "math()" ew
+\Theta
+endsnippet
+
+snippet kk "kappa" "math()" ew
+\kappa
+endsnippet
+
+snippet ll "lambda" "math()" ew
+\lambda
+endsnippet
+
+snippet LL "Lambda" "math()" ew
+\Lambda
+endsnippet
+
+snippet pp "pi" "math()" ew
+\pi
+endsnippet
+
+snippet PP "Pi" "math()" ew
+\Pi
+endsnippet
+
+snippet rr "rho" "math()" ew
+\rho
+endsnippet
+
+snippet ss "sigma" "math()" ew
+\sigma
+endsnippet
+
+snippet SS "Sigma" "math()" ew
+\Sigma
+endsnippet
+
+snippet oo "omega" "math()" ew
+\omega
+endsnippet
+
+snippet OO "Omega" "math()" ew
+\Omega
+endsnippet
+
+snippet vphi "varphi" "math()" ew
+\varphi
+endsnippet
+
+snippet "(?<!\\)\b(iota|mu|nu|xi|Xi|tau|upsilon|phi|Phi|chi|psi|Psi)" "math()" er
+`!p snip.rv = f"\\{match.group(1)}"`
 endsnippet
 
 # >>> MATH >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
